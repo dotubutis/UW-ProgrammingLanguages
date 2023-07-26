@@ -92,9 +92,11 @@ fun what_month (day: int) =
 [m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
 of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2. *)
 fun month_range (day1: int, day2: int) = 
-    if day1 = day2
-    then what_month(day2)::[]
-    else what_month(day1)::month_range(day1+1, day2)
+    if day1 > day2 then []
+    else 
+        if day1 = day2
+        then what_month(day2)::[]
+        else what_month(day1)::month_range(day1+1, day2)
 
 (* Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It
 evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list. *)
