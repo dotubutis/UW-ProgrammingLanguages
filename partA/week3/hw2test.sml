@@ -11,7 +11,14 @@ val test1d = all_except_option("string", []) = NONE
 val test1e = all_except_option("string", ["other1", "other2", "other3"]) = NONE
 val test1f = all_except_option("string", ["string", "other2", "other3"]) = SOME ["other2", "other3"]
 
-(* val test2 = get_substitutions1 ([["foo"],["there"]], "foo") = [] *)
+val test2a = get_substitutions1 ([["foo"],["there"]], "foo") = []
+val test2b = get_substitutions1 ([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred") = ["Fredrick","Freddie","F"]
+val test2c = get_substitutions1 ([["Fred","Freddie","Fredrick"],["Betty","Elizabeth"]], "Fred") = ["Freddie", "Fredrick"]
+val test2d = get_substitutions1 ([[]], "Fred") = []
+val test2e = get_substitutions1 ([["Alice","Bob"],["Carol","Dave"]], "Eve") = []
+val test2f = get_substitutions1 ([["John", "Johnny", "Jack"],["Jack","Jill"],["Johnny", "Jonathan"]], "Johnny") = ["John", "Jack", "Jonathan"]
+val test2g = get_substitutions1 ([["Fred"],["Betty","Elizabeth"],["Johnny","John"]], "Fred") = []
+val test2h = get_substitutions1 ([["Fred"],["Fred"],["Johnny","John"]], "Fred") = []
 
 (* val test3 = get_substitutions2 ([["foo"],["there"]], "foo") = [] *)
 
